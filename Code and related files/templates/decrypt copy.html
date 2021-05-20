@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Decryption</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+
+  <meta charset="utf-8">
+  <style>
+    html {
+      background-image: url("1.jpg");
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    #decrpt {
+      text-align: center;
+    }
+
+    #para{
+      color: black;
+      font-weight: bold;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="decrpt">
+    <h1>Decryption</h1>
+    <p id="para">Click on the "Choose File" button to upload a file:</p>
+
+    <form action='/' method="POST">
+        <input id="file" type="file" onchange="readURL(this);" name="filename" accept="image/*,.pdf,.enc" required>
+
+        <label for="key" >Enter Key :</label>
+        <input id="key" type="password" name="key" placeholder="Enter Key to encrypt" required>
+
+        <input onclick="requestOtp()" type="button" id="RequestOtp" name="Request Otp" value="Request OTP">
+        <br>
+        <br>
+        <div id="otpBlock" style="display: none;">
+          
+          <label for="otp" style="padding-left: 70px;">Enter Otp</label>
+          <input id="otp" type="text" name="otp" placeholder="Enter OTP to Decrypt" autocomplete="off" required>
+          <br>
+          <br>
+          
+          <br>
+          <br>
+          <input type="submit" onclick="f()" name="Decrypt" value="Decrypt">
+          <div class="flashes">
+            
+          </div>
+        </div>
+        <div>
+          <img id="blah" src="#" alt="your image">
+        </div>
+
+        
+        <h1 id="result"></h1>
+
+    </form>
+
+  </div>
+  <script>
+    function f() {
+      var a = document.getElementById('file').value;
+      var key = document.getElementById('key').value;
+      console.log(key);
+      console.log(a);
+      //document.getElementById('result').innerHTML = '"Decryption successfull"';
+    }
+
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          $('#blah')
+            .attr('src', e.target.result)
+        };
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    function requestOtp(){
+      var x = document.getElementById("otpBlock");
+        x.style.display = "block";
+
+    }
+  </script>
+
+</body>
+
+</html>
