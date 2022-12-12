@@ -1,2 +1,2 @@
 # AES
-AES encryption for images
+AES encryption and decryption of images
